@@ -112,6 +112,7 @@
 		<None Remove="Resources\Images\barcode.svg" />
 		<None Remove="Services\" />
 		<None Remove="Services\Base\" />
+		<None Remove="Resources\Images\stocks.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Views\" />
@@ -191,6 +192,7 @@
 	<ItemGroup>
 		<BundleResource Include="Resources\*" />
 		<!--<BundleResource Include="**/*" />-->
+		<BundleResource Include="Resources\Images\stocks.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Remove="Resources\Icons\**" />

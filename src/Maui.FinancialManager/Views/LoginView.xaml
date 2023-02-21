@@ -5,6 +5,11 @@
              xmlns:viewModels="clr-namespace:Maui.FinancialManager.ViewModels"
              x:DataType="viewModels:LoginViewModel" BackgroundColor="#171717"
              Title="">
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="#569cd6"/>
+        </Style>
+    </ContentPage.Resources>
     <Grid RowDefinitions="*,Auto">
         <VerticalStackLayout>
             <Grid RowDefinitions="*,Auto,Auto" Margin="0,50">

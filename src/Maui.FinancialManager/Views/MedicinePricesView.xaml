@@ -71,7 +71,7 @@
         </Border>
 
         <Label HorizontalOptions="Center" Text="{Binding Medicines.Count, StringFormat='Resultados Encontrados ({0})'}" FontSize="20" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0"/>
-        <RefreshView Command="{Binding SearchCommand}" IsRefreshing="{Binding LoadingData}" Grid.Row="2" Grid.ColumnSpan="2">
+        <RefreshView IsRefreshing="{Binding LoadingData}" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5">
             <Border StrokeThickness="1" Padding="5" StrokeShape="RoundRectangle 10">
                 <CollectionView x:Name="MedicinesList" ItemsSource="{Binding Medicines}" SelectionMode="Single" Margin="5" SelectedItem="{Binding SelectedMedicine}">
                     <CollectionView.ItemsLayout>

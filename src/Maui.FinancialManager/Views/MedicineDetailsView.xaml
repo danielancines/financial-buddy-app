@@ -7,8 +7,8 @@
     <ScrollView>
         <Grid RowDefinitions="auto,auto,*">
             <Label Text="{Binding Medicine.Name}" Margin="0,0,0,50" FontAttributes="Bold" FontSize="18"/>
-            <Label Text="{Binding Medicine.Description}" Grid.Row="1" TextType="Html" BackgroundColor="White" TextColor="White"/>
-            <CarouselView ItemsSource="{Binding Medicine.Images}" Grid.Row="2">
+            <Label Text="{Binding Medicine.Description}" Grid.Row="1" TextType="Html" TextColor="White"/>
+            <CarouselView ItemsSource="{Binding Medicine.Images}" Grid.Row="2" IsVisible="False" BackgroundColor="Red">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" />
                 </CarouselView.ItemsLayout>
