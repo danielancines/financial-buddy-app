@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json;
+using Maui.FinancialManager.Services;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 
@@ -11,10 +11,12 @@ namespace Maui.FinancialManager.ViewModels;
 public partial class LoginViewModel : ObservableObject
 {
     const string USE_BIOMETRIC = "useBiometric";
+    private readonly AuthenticationService _authenticationService;
 
-    public LoginViewModel()
+    public LoginViewModel(AuthenticationService authenticationService)
     {
         this.Initialize();
+        this._authenticationService = authenticationService;
     }
 
     public string Version { get; set; } = $"{AppInfo.Current.Name} - {AppInfo.Version}";
@@ -31,36 +33,17 @@ public partial class LoginViewModel : ObservableObject
     [RelayCommand]
     async void Login()
     {
-        var client = new HttpClient();
-        var data = new
+        var token = await this._authenticationService.Authenticate(this.UserLogin, this.UserPassword);
+        if (string.IsNullOrEmpty(token))
         {
-            login = this.UserLogin,
-            password = this.UserPassword
-
-        };
-
-        var body = new StringContent(JsonConvert.SerializeObject(data),
-                                  Encoding.UTF8, "application/json");
-
-        try
+            _ = Shell.Current.DisplayAlert("Erro", "Usuário e/ou senha inválidos", "Ok");
+        } else
         {
-            var response = await client.PostAsync("http://api.danielancines.com/api/v1/auth", body);
-            if (response.IsSuccessStatusCode)
-            {
-                Preferences.Set(nameof(this.UserLogin), this.UserLogin);
-                Preferences.Set(nameof(this.UserPassword), this.UserPassword);
-                this.UserPassword = null;
-                _ = Shell.Current.GoToAsync("//medicinesearch");
-            }
-            else
-            {
-                _ = Shell.Current.DisplayAlert("Erro", "Usuário e/ou senha inválidos", "Ok");
-            }
-
-        }
-        catch (Exception ex)
-        {
-            //TODO Log errors with authentication and send it before to server
+            Preferences.Set(nameof(this.UserLogin), this.UserLogin);
+            Preferences.Set(nameof(this.UserPassword), this.UserPassword);
+            Preferences.Set("Token", token);
+            this.UserPassword = null;
+            _ = Shell.Current.GoToAsync("//medicinesearch");
         }
     }
 

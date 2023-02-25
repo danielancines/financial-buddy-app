@@ -5,6 +5,7 @@ using Maui.FinancialManager.Views;
 using Maui.FinancialManager.Serializers;
 using Plugin.Fingerprint.Abstractions;
 using Maui.FinancialManager.Services;
+using Maui.FinancialManager.Services.Contracts;
 
 namespace Maui.FinancialManager.Configuration;
 
@@ -18,6 +19,7 @@ public static class BuildConfiguration
         ConfigureSerializers(builder);
         ConfigureSecurity(builder);
         ConfigureServices(builder);
+        ConfigureUris(builder);
 
         return builder;
     }
@@ -59,11 +61,21 @@ public static class BuildConfiguration
     static void ConfigureServices(this MauiAppBuilder builder)
     {
         builder.Services.AddScoped<ProductsService>();
+        builder.Services.AddScoped<AuthenticationService>();
     }
 
     static void ConfigureSecurity(MauiAppBuilder builder)
     {
 
+    }
+
+    static void ConfigureUris(MauiAppBuilder builder)
+    {
+#if DEBUG
+        builder.Services.AddSingleton<IServiceUris, DevelopmentConfiguration>();
+#else
+        builder.Services.AddSingleton<IServiceUris, ProductionConfiguration>();
+#endif
     }
 }
 

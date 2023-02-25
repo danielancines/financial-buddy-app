@@ -17,7 +17,7 @@
 		<ApplicationIdGuid>0ed32af2-c764-4834-9df9-a815977834b8</ApplicationIdGuid>
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
-		<ApplicationVersion>0</ApplicationVersion>
+		<ApplicationVersion>1</ApplicationVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
@@ -113,6 +113,7 @@
 		<None Remove="Services\" />
 		<None Remove="Services\Base\" />
 		<None Remove="Resources\Images\stocks.svg" />
+		<None Remove="Services\Contracts\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Views\" />
@@ -129,6 +130,7 @@
 		<Folder Include="Serializers\Base\" />
 		<Folder Include="Services\" />
 		<Folder Include="Services\Base\" />
+		<Folder Include="Services\Contracts\" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Maui.FinancialManager.Core\Maui.FinancialManager.Core.csproj" />

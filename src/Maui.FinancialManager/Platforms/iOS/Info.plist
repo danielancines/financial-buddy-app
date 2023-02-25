@@ -32,6 +32,8 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<false/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses barcode scanning to Financial Buddy</string>
