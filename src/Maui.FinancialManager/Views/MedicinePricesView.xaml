@@ -74,20 +74,14 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Medicine">
-                    <Frame BackgroundColor="#171919" CornerRadius="0">
-                        <Frame.Shadow>
-                            <Shadow Brush="Red"
-                                Offset="0,0"
-                                Radius="20"
-                                Opacity="0.5" />
-                        </Frame.Shadow>
+                    <Frame BackgroundColor="#171919">
                         <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="Auto, Auto, Auto" RowSpacing="2">
-                            <Label Text="{Binding Name}" Grid.Row="1" FontSize="16" LineBreakMode="WordWrap"/>
+                            <Label Text="{Binding Name}" Grid.Row="1" FontSize="16" LineBreakMode="TailTruncation" WidthRequest="350"/>
                             <HorizontalStackLayout Grid.Row="2">
                                 <Label Text="{Binding Price, StringFormat='{0:c}'}" TextColor="White" FontSize="14"/>
-                                <Label Text="{Binding PackageQuantity, StringFormat=' - {0}', FallbackValue={x:Null}}" Grid.Column="2" TextColor="White" Grid.Row="1" FontSize="12" Opacity="0.8" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding PackageQuantity, StringFormat=' {0}', FallbackValue={x:Null}}" Grid.Column="2" TextColor="White" Grid.Row="1" FontSize="12" Opacity="0.8" VerticalTextAlignment="Center"/>
                             </HorizontalStackLayout>
-                            <Label Text="{Binding DrugStore, StringFormat='Farmácia: {0}'}" TextColor="White" FontAttributes="Bold" Grid.Row="3" FontSize="12"/>
+                            <Label Text="{Binding DrugStore}" TextColor="White" FontAttributes="Bold" Grid.Row="3" FontSize="12"/>
                         </Grid>
                     </Frame>
                 </DataTemplate>
